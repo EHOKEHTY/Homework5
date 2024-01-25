@@ -6,54 +6,35 @@ namespace Homework5
     {
         static void Main(string[] args)
         {
-            //object []items = new object[8];
-            //items[0] = 'f';
-            //items[1] = 'w';
-            //items[2] = 3;
-            //items[3] = 32;
+            var list = new MyList();
+            list.Add(1);
+            list.Add(2);
+            list.Add(3);
+            list.Add(4);
+            list.Add(5);
+            list.Add(6);
+            list.Add(7);
+            list.Add(8);
+            list.Insert(8, 's');
+            list.Remove(8);
+            list.Display();
 
-            //object []o = new object[4];
+            var tree = new MyBinaryTree();
+            tree.Add(1);
+            tree.Add(30);
+            tree.Add(15);
+            tree.Add(17);
+            tree.Add(8);
+            tree.Add(40);
+            tree.Add(41);
+            tree.Add(4);
 
-            //o = items;
-            //for (int i = 0; i < o.Length; i++)
-            //{
-            //    //Console.WriteLine(o[i].ToString());
-            //    if (o[i] == null)
-            //    {
-            //        Console.WriteLine("null");
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine(o[i]);
-            //    }
-            //}
-            //MyList list = new MyList();
-            //list.Add(1);
-            //list.Add(2);
-            //list.Add(3);
-            //list.Add(4);
-            //list.Add(5);
-            ////list.Insert(0, "sd");
-            ////list.RemoveAt(2);
-            //list.Display();
-            //Console.WriteLine(list.Contains(3));
-
-
-            MyList j = new MyList();
-            j.Add(1);
-            j.Add(2);
-            j.Add(3);
-            j.Add(4);
-            j.Add(5);
-            j.Add(6);
-            j.Add(7);
-            j.Add(8);
-            j.Insert(8, 's');
-            j.Remove(8);
-            j.Display();
-            //Console.WriteLine(j[2]);
-            //Console.WriteLine(j.Contains('s'));
-            //Console.WriteLine(j.IndexOf('s'));
+            Console.WriteLine(tree.Contains(8));
+            int[] a = tree.ToArray();
+            for (int i = 0; i < a.Length; i++)
+            {
+                Console.WriteLine(a[i]);
+            }
         }
     }
 }
