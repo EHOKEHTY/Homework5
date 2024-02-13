@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace MyInterfaces
 {
-    public interface IList : ICollection
+    public interface IList<T> : ICollection
     {
-        object this[int index] { get; set; }
-        void Add(object toAdd);
-        void Insert(int index, object toInsert);
-        void Remove(object obj);
+        T this[int index] { get; set; }
+        void Add(T toAdd);
+        void Insert(int index, T toInsert);
+        void Remove(T obj);
         void RemoveAt(int index);
-        bool Contains(object obj);
-        int IndexOf(object obj);
-        object[] ToArray();
+        bool Contains(T obj);
+        int IndexOf(T obj);
+        T[] ToArray();
         void Reverse();
         void Display();
     }

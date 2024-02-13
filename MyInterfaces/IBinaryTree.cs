@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace MyInterfaces
 {
-    public interface IBinaryTree : ICollection
+    public interface IBinaryTree<T> : ICollection where T : IComparable<T>
     {
-        void Add(int value);
-        bool Contains(int value);
-        int[] ToArray();
+        void Add(T value);
+        bool Contains(T value);
+        T[] ToArray();
     }
 }

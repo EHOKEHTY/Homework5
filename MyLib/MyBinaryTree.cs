@@ -8,22 +8,22 @@ using MyInterfaces;
 
 namespace MyLib
 {
-    public class MyBinaryTree : MyInterfaces.IBinaryTree
+    public class MyBinaryTree<T> : MyInterfaces.IBinaryTree<T> where T : IComparable<T>
     {
         private class TreeNode
         {
-            public int Value;
-            public TreeNode Left;
-            public TreeNode Right;
+            public T Value;
+            public TreeNode? Left;
+            public TreeNode? Right;
 
-            public TreeNode(int value)
+            public TreeNode(T value)
             {
                 this.Value = value;
                 Left = null;
                 Right = null;
             }
         }
-        private TreeNode root;
+        private TreeNode? root;
         public int Count { get; private set; }
         
         public MyBinaryTree()
@@ -32,7 +32,7 @@ namespace MyLib
             Count = 0;
         }
 
-        public void Add(int value)
+        public void Add(T value)
         {
             root = AddRecursive(root, value);
             Count++;
@@ -44,31 +44,31 @@ namespace MyLib
             Count = 0;
         }
 
-        public bool Contains(int value)
+        public bool Contains(T value)
         {
             return ContainsRecursive(root, value);
         }
 
-        public int[] ToArray()
+        public T[] ToArray()
         {
-            int[] result = new int[Count];
+            T[] result = new T[Count];
             int index = 0;
             InOrderTraversal(root, ref result, ref index);
             return result;
         }
 
-        private TreeNode AddRecursive(TreeNode node, int value)
+        private TreeNode AddRecursive(TreeNode? node, T value)
         {
             if (node == null)
             {
                 return new TreeNode(value);
             }
 
-            if (value < node.Value)
+            if (value.CompareTo(node.Value) >= 0)
             {
                 node.Left = AddRecursive(node.Left, value);
             }
-            else if (value > node.Value)
+            else if (value.CompareTo(node.Value) < 0)
             {
                 node.Right = AddRecursive(node.Right, value);
             }
@@ -76,19 +76,19 @@ namespace MyLib
             return node;
         }
 
-        private bool ContainsRecursive(TreeNode node, int value)
+        private bool ContainsRecursive(TreeNode? node, T value)
         {
             if (node == null)
             {
                 return false;
             }
 
-            if (value == node.Value)
+            if (value.CompareTo(node.Value) >= 0)
             {
                 return true;
             }
 
-            if (value < node.Value)
+            if (value.CompareTo(node.Value) < 0)
             {
                
                 return ContainsRecursive(node.Left, value);
@@ -99,7 +99,7 @@ namespace MyLib
             }
         }
 
-        private void InOrderTraversal(TreeNode node, ref int[] result, ref int index)
+        private void InOrderTraversal(TreeNode? node, ref T[] result, ref int index)
         {
             if (node != null)
             {

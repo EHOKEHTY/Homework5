@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using MyInterfaces;
 namespace MyLib
 {
-    public class MyList : MyInterfaces.IList
+    public class MyList<T> : MyInterfaces.IList<T>
     {
-        private object[] items;
-            
+        private T[] items;
+
         public int Count { get; private set; }
 
-        public object this[int index]
+        public T this[int index]
         {
             get
             {
@@ -34,18 +34,18 @@ namespace MyLib
 
         public MyList()
         {
-            items = new object[1];
+            items = new T[0];
             Count = 0;
         }
 
-        public void Add(object toAdd)
+        public void Add(T toAdd)
         {
             IncreaseCapacity();
             items[Count] = toAdd;
             Count++;
         }
 
-        public void Insert(int index, object toInsert)
+        public void Insert(int index, T toInsert)
         {
             if (index > items.Length || index < 0)
             {
@@ -53,7 +53,7 @@ namespace MyLib
             }
             else
             {
-                object[] o = items;
+                T[] o = items;
                 IncreaseCapacity();
                 for (int i = 0; i < index; i++)
                 {
@@ -70,45 +70,53 @@ namespace MyLib
             }
         }
 
-        public void Remove(object obj)
+        public void Remove(T obj)
         {
             for (int i = 0; i < items.Length; i++)
             {
                 if (items[i].Equals(obj))
                 {
                     RemoveAt(i);
+                    break;
                 }
             }
         }
 
         public void RemoveAt(int index)
         {
-            object[] o = new object[Count];
+            T[] o = new T[Count];
 
             for (int i = 0; i < Count; i++)
             {
                 o[i] = items[i];
             }
 
-            items = new object[items.Length - 1];
+            items = new T[items.Length - 1];
+            Count--;
 
-            for (int i = 0, j = 0; i < items.Length && j < items.Length; i++, j++)
+            for (int i = 0, j = 0; i <= items.Length; i++, j++)
             {
                 if (i == index)
                 {
                     i++;
                 }
+                if (i >= o.Length)
+                {
+                    break;
+                }
                 items[j] = o[i];
+                
             }
+
         }
 
         public void Clear()
         {
             Count = 0;
-            items = new object[0];
+            items = new T[0];
         }
 
-        public bool Contains(object obj)
+        public bool Contains(T obj)
         {
 
             for (int i = 0; i < Count; i++)
@@ -121,7 +129,7 @@ namespace MyLib
             return false;
         }
 
-        public int IndexOf(object obj)
+        public int IndexOf(T obj)
         {
             for (int i = 0; i < Count; i++)
             {
@@ -133,9 +141,9 @@ namespace MyLib
             return -1;
         }
 
-        public object[] ToArray()
+        public T[] ToArray()
         {
-            object[] array = new object[Count];
+            T[] array = new T[Count];
             for (int i = 0; i < Count; i++)
             {
                 array[i] = items[i];
@@ -160,7 +168,7 @@ namespace MyLib
         {
             if (Count + 1 > items.Length)
             {
-                object[] temp = new object[items.Length + 1];
+                T[] temp = new T[items.Length + 1];
                 for (int i = 0; i < items.Length; i++)
                 {
                     temp[i] = items[i];
