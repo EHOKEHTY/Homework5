@@ -6,7 +6,7 @@ namespace Homework5
     {
         static void Main(string[] args)
         {
-            var list = new MyList();
+            var list = new MyList<int>();
             list.Add(1);
             list.Add(2);
             list.Add(3);
@@ -15,11 +15,12 @@ namespace Homework5
             list.Add(6);
             list.Add(7);
             list.Add(8);
-            list.Insert(8, 's');
+            list.Insert(6, -10);
+            list.RemoveAt(6);
             list.Remove(8);
             list.Display();
 
-            var tree = new MyBinaryTree();
+            var tree = new MyBinaryTree<int>();
             tree.Add(1);
             tree.Add(30);
             tree.Add(15);
