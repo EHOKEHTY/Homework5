@@ -4,10 +4,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MyInterfaces;
 
 namespace MyLib
 {
-    public class MyBinaryTree
+    public class MyBinaryTree : MyInterfaces.IBinaryTree
     {
         private class TreeNode
         {

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using MyInterfaces;
 namespace MyLib
 {
-    public class MyList
+    public class MyList : MyInterfaces.IList
     {
         private object[] items;
-
+            
         public int Count { get; private set; }
 
         public object this[int index]
