@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyInterfaces
 {
-    public interface IList<T> : ICollection
+    public interface IList<T> : ICollection, IEnumerable<T>
     {
         T this[int index] { get; set; }
         void Add(T toAdd);

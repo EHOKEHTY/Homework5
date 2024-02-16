@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -107,6 +108,30 @@ namespace MyLib
                 result[index++] = node.Value;
                 InOrderTraversal(node.Right, ref result, ref index);
             }
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            var stack = new Stack<TreeNode>();
+            var current = root;
+
+            while (current != null || stack.Count > 0)
+            {
+                while (current != null)
+                {
+                    stack.Push(current);
+                    current = current.Left;
+                }
+
+                current = stack.Pop();
+                yield return current.Value;
+                current = current.Right;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
 
     }

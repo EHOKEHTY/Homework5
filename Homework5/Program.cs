@@ -6,35 +6,30 @@ namespace Homework5
     {
         static void Main(string[] args)
         {
-            var list = new MyList<int>();
-            list.Add(1);
-            list.Add(2);
-            list.Add(3);
-            list.Add(4);
-            list.Add(5);
-            list.Add(6);
-            list.Add(7);
-            list.Add(8);
+            var list = new MyList<int>
+            {
+                1,2,3,4,5,6,7,8,9,10
+            };
             list.Insert(6, -10);
             list.RemoveAt(6);
             list.Remove(8);
-            list.Display();
 
-            var tree = new MyBinaryTree<int>();
-            tree.Add(1);
-            tree.Add(30);
-            tree.Add(15);
-            tree.Add(17);
-            tree.Add(8);
-            tree.Add(40);
-            tree.Add(41);
-            tree.Add(4);
-
-            Console.WriteLine(tree.Contains(8));
-            int[] a = tree.ToArray();
-            for (int i = 0; i < a.Length; i++)
+            var tree = new MyBinaryTree<int>
             {
-                Console.WriteLine(a[i]);
+                1,30,15,17,8,40,41,4
+            };
+
+            var filtered = list.Where(a => a > 4);
+            var filtered2 = tree.Where(a => a <= 15);
+
+            foreach (var item in filtered)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("------");
+            foreach (var item in filtered2)
+            {
+                Console.WriteLine(item);
             }
         }
     }
