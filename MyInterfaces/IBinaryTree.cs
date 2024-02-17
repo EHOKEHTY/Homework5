@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyInterfaces
 {
-    public interface IBinaryTree<T> : ICollection where T : IComparable<T>
+    public interface IBinaryTree<T> : ICollection, IEnumerable<T> where T : IComparable<T>
     {
         void Add(T value);
         bool Contains(T value);
